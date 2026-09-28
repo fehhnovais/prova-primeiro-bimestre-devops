@@ -1,0 +1,55 @@
+#!/bin/bash
+set -uxo pipefail
+exec > /var/log/api-reservas-bootstrap.log 2>&1
+
+export DATABASE_URL="${database_url}"
+export PORT="${api_port}"
+
+# Dependencias: Node.js, cliente PostgreSQL e git.
+dnf install -y nodejs npm postgresql15 git || dnf install -y nodejs npm postgresql16 git || dnf install -y nodejs npm postgresql git || yum install -y nodejs npm postgresql git
+
+APP_ROOT=/opt/api-reservas
+rm -rf "$APP_ROOT"
+git clone --depth 1 --branch "${app_repo_branch}" "${app_repo_url}" "$APP_ROOT"
+
+APP_DIR="$APP_ROOT/app"
+
+# Aplica o schema (init.sql) no RDS; idempotente via CREATE TABLE IF NOT EXISTS.
+# Faz algumas tentativas caso o RDS ainda esteja finalizando a inicializacao.
+if [ -f "$APP_DIR/init.sql" ] && [ -n "$DATABASE_URL" ]; then
+  for i in 1 2 3 4 5 6 7 8 9 10; do
+    if psql "$DATABASE_URL?sslmode=require" -f "$APP_DIR/init.sql"; then
+      break
+    fi
+    echo "Tentativa $i de aplicar init.sql falhou; aguardando o RDS..."
+    sleep 15
+  done
+fi
+
+# Instala dependencias de producao e sobe a API_Reservas via systemd.
+if [ -f "$APP_DIR/package.json" ]; then
+  cd "$APP_DIR"
+  npm ci --omit=dev || npm install --omit=dev
+
+  cat > /etc/systemd/system/api-reservas.service <<UNIT
+[Unit]
+Description=API de Reservas
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=$APP_DIR
+Environment=DATABASE_URL=${database_url}
+Environment=PGSSL=require
+Environment=PORT=${api_port}
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+
+  systemctl daemon-reload
+  systemctl enable --now api-reservas.service
+fi

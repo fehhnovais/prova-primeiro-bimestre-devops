@@ -27,16 +27,28 @@ const { loadConfig } = require('../config');
  * @param {ReturnType<typeof loadConfig>} [config=loadConfig()] configuração normalizada.
  * @returns {import('pg').PoolConfig} opções para o `pg.Pool`.
  */
-function buildPoolConfig(config = loadConfig()) {
+function isSslEnabled(env = process.env) {
+  const raw = String(env.PGSSL || env.DATABASE_SSL || '').trim().toLowerCase();
+  return raw === '1' || raw === 'true' || raw === 'require' || raw === 'on';
+}
+
+function buildPoolConfig(config = loadConfig(), env = process.env) {
   const cfg = config || {};
 
+  // SSL opcional: exigido pelo RDS PostgreSQL gerenciado (que recusa conexoes
+  // sem criptografia). Habilitado via PGSSL/DATABASE_SSL. Em desenvolvimento
+  // local (Docker Compose) fica desativado. rejectUnauthorized=false aceita o
+  // certificado do RDS sem exigir a CA no cliente (adequado ao Learner Lab).
+  const ssl = isSslEnabled(env) ? { rejectUnauthorized: false } : undefined;
+
   if (cfg.databaseUrl) {
-    return { connectionString: cfg.databaseUrl };
+    return ssl ? { connectionString: cfg.databaseUrl, ssl } : { connectionString: cfg.databaseUrl };
   }
 
   if (cfg.pg) {
     const { host, port, user, password, database } = cfg.pg;
-    return { host, port, user, password, database };
+    const base = { host, port, user, password, database };
+    return ssl ? { ...base, ssl } : base;
   }
 
   return {};

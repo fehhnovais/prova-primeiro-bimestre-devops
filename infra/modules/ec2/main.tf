@@ -21,71 +21,16 @@ locals {
   # Resolve a AMI: usa a fornecida explicitamente ou a Amazon Linux 2023 mais recente (data source).
   ami_id = var.ami_id != "" ? var.ami_id : data.aws_ami.amazon_linux.id
 
-  # user_data padrão: instala Node.js + PostgreSQL client + git, CLONA o
-  # repositório da aplicação, instala as dependências de produção, aplica o
-  # init.sql no RDS e sobe a API_Reservas na porta configurada (Req 13.4).
-  # Se um user_data customizado for fornecido, ele tem precedência.
-  #
-  # O código é obtido via `git clone` de um repositório PÚBLICO (var.app_repo_url)
-  # no branch var.app_repo_branch. Isso evita embutir o código-fonte no user_data
-  # e mantém a instância alinhada ao repositório entregue.
-  default_user_data = <<-EOT
-    #!/bin/bash
-    set -uxo pipefail
-    exec > /var/log/api-reservas-bootstrap.log 2>&1
-
-    export DATABASE_URL="${var.database_url}"
-    export PORT="${var.api_port}"
-
-    # Dependências: Node.js, cliente PostgreSQL e git.
-    dnf install -y nodejs npm postgresql15 git || dnf install -y nodejs npm postgresql git || yum install -y nodejs npm postgresql git
-
-    APP_ROOT=/opt/api-reservas
-    rm -rf "$APP_ROOT"
-    git clone --depth 1 --branch "${var.app_repo_branch}" "${var.app_repo_url}" "$APP_ROOT"
-
-    APP_DIR="$APP_ROOT/app"
-
-    # Aplica o schema (init.sql) no RDS; idempotente via CREATE TABLE IF NOT EXISTS.
-    # Faz algumas tentativas caso o RDS ainda esteja finalizando a inicialização.
-    if [ -f "$APP_DIR/init.sql" ] && [ -n "$DATABASE_URL" ]; then
-      for i in 1 2 3 4 5 6 7 8 9 10; do
-        if psql "$DATABASE_URL" -f "$APP_DIR/init.sql"; then
-          break
-        fi
-        echo "Tentativa $i de aplicar init.sql falhou; aguardando o RDS..."
-        sleep 15
-      done
-    fi
-
-    # Instala dependências de produção e sobe a API_Reservas via systemd, para
-    # reiniciar automaticamente e sobreviver a reboots.
-    if [ -f "$APP_DIR/package.json" ]; then
-      cd "$APP_DIR"
-      npm ci --omit=dev || npm install --omit=dev
-
-      cat > /etc/systemd/system/api-reservas.service <<UNIT
-[Unit]
-Description=API de Reservas
-After=network.target
-
-[Service]
-Type=simple
-WorkingDirectory=$APP_DIR
-Environment=DATABASE_URL=${var.database_url}
-Environment=PORT=${var.api_port}
-ExecStart=/usr/bin/npm start
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-UNIT
-
-      systemctl daemon-reload
-      systemctl enable --now api-reservas.service
-    fi
-  EOT
+  # user_data: renderizado a partir de um arquivo de template (.tftpl) SEM
+  # indentacao, garantindo que o shebang (#!/bin/bash) fique na coluna 0. O
+  # heredoc <<-EOT do HCL so remove tabs (nao espacos), o que corrompia o
+  # shebang e fazia o cloud-init falhar. templatefile() evita esse problema.
+  default_user_data = templatefile("${path.module}/user_data.sh.tftpl", {
+    database_url    = var.database_url
+    api_port        = var.api_port
+    app_repo_url    = var.app_repo_url
+    app_repo_branch = var.app_repo_branch
+  })
 
   user_data = var.user_data != "" ? var.user_data : local.default_user_data
 }
