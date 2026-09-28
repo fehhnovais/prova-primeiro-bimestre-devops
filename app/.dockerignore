@@ -1,0 +1,38 @@
+# Dependências (reinstaladas dentro da imagem)
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variáveis de ambiente e segredos (não devem ir para o contexto de build)
+.env
+.env.local
+.env.*.local
+.env.example
+
+# Artefatos de teste e cobertura
+coverage
+.nyc_output
+**/__tests__
+**/*.test.js
+jest.config.*
+
+# Controle de versão
+.git
+.gitignore
+.gitkeep
+
+# Documentação e metadados desnecessários ao runtime
+README.md
+*.md
+.dockerignore
+Dockerfile
+
+# Sistema operacional / editor
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# Logs
+*.log

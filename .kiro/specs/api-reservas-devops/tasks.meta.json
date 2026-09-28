@@ -1,0 +1,667 @@
+{
+  "pbtResults": {
+    "5.1 Property test: round-trip criar → buscar preserva dados": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568364604
+    },
+    "5.2 Property test: `status` ausente assume `pendente`": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568407316
+    },
+    "5.4 Property test: listagem reflete exatamente as inserções": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568413059
+    },
+    "5.3 Property test: entrada inválida em criação nunca é persistida": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568462129
+    },
+    "5.5 Property test: round-trip de atualização reflete novos dados": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568567316
+    },
+    "5.6 Property test: atualização inválida nunca altera o estado": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568612863
+    },
+    "5.7 Property test: remover torna a busca subsequente um 404": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568620326
+    },
+    "5.8 Property test: busca por `id` inexistente resulta em 404": {
+      "status": "passed",
+      "lastRunTimestamp": 1790568623714
+    }
+  },
+  "executionHistory": {
+    "1.1 Criar estrutura de diretórios e `package.json` da API": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565962647
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565973744
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566242323
+      }
+    ],
+    "1.2 Implementar módulo de configuração de conexão (`config.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963064
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566251687
+      },
+      {
+        "executionId": "36395292-a5d0-4123-983c-8f483f27716a",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566554253
+      }
+    ],
+    "1.3 Implementar pool do pg (`db/pool.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963332
+      },
+      {
+        "executionId": "36395292-a5d0-4123-983c-8f483f27716a",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566562145
+      }
+    ],
+    "1.4 Atualizar `.gitignore` para excluir `.env` e artefatos locais": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963498
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565977449
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566243679
+      }
+    ],
+    "2.1 Criar schema de inicialização (`app/init.sql`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963596
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566252547
+      },
+      {
+        "executionId": "36395292-a5d0-4123-983c-8f483f27716a",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566552313
+      }
+    ],
+    "2.2 Implementar repositório de reservas (`repository/reservasRepo.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963679
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567165018
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567303802
+      }
+    ],
+    "3.1 Implementar regras de validação (`validation/reservaValidation.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963763
+      },
+      {
+        "executionId": "36395292-a5d0-4123-983c-8f483f27716a",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566563544
+      }
+    ],
+    "3.2 Implementar rotas CRUD de reservas (`routes/reservas.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963873
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326108
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567340759
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567532292
+      }
+    ],
+    "3.3 Implementar rota de health check (`routes/health.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565963966
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326268
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567339701
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567533105
+      }
+    ],
+    "3.4 Montar Express e middleware de erro global (`app.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964081
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326358
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567537739
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567635269
+      }
+    ],
+    "3.5 Implementar bootstrap do servidor (`server.js`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964210
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326468
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567638950
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567784182
+      }
+    ],
+    "4. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964345
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326581
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567890780
+      }
+    ],
+    "6. Checkpoint - Ensure all tests pass (suíte completa <= 60s)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964461
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326771
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567891712
+      }
+    ],
+    "7.1 Criar `Dockerfile` multi-stage com usuário não-root": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964543
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326853
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567643661
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567785455
+      }
+    ],
+    "7.2 Criar `.dockerignore`": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964632
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567326938
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567645369
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567786566
+      }
+    ],
+    "7.3 [MANUAL] Build e run do container Docker": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964725
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567327030
+      }
+    ],
+    "8.1 Criar `docker-compose.yml` (api + db)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964811
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567327116
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567792991
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567871881
+      }
+    ],
+    "8.2 Criar `.env.example` versionado": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565964899
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567327201
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567646009
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567787808
+      }
+    ],
+    "8.3 [MANUAL] Subir o ambiente local com Docker Compose": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965032
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567327317
+      }
+    ],
+    "9.1 Implementar módulo VPC (`infra/modules/vpc`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965154
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565978816
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566245035
+      }
+    ],
+    "9.2 Implementar módulo security-group (`infra/modules/security-group`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965260
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565979687
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566246026
+      }
+    ],
+    "9.3 Implementar módulo EC2 (`infra/modules/ec2`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965362
+      },
+      {
+        "executionId": "36395292-a5d0-4123-983c-8f483f27716a",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566564524
+      }
+    ],
+    "9.4 Implementar módulo RDS (`infra/modules/rds`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965461
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566253560
+      },
+      {
+        "executionId": "36395292-a5d0-4123-983c-8f483f27716a",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566553230
+      }
+    ],
+    "9.5 Implementar bootstrap do remote state (`infra/backend`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965607
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565980721
+      },
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566246957
+      }
+    ],
+    "9.6 Implementar composição raiz (`infra/`)": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965769
+      },
+      {
+        "executionId": "36395292-a5d0-4123-983c-8f483f27716a",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790566565685
+      }
+    ],
+    "11.1 Criar `README.md` na raiz": [
+      {
+        "executionId": "0cb8eee2-5a4c-48ec-9b75-cc23d28185c8",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790565965886
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567327428
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567647013
+      },
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567788584
+      }
+    ],
+    "2. Schema e camada de repositório": [
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567303974
+      }
+    ],
+    "3. Validação, rotas CRUD, health check e error handling": [
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567784338
+      }
+    ],
+    "11. Documentação do repositório": [
+      {
+        "executionId": "cd5cbd32-f2d7-4a2c-ad50-370f8b824a36",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790567788729
+      }
+    ],
+    "2.3 Escrever testes unitários do repositório com mock de pool": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568107111
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568238257
+      }
+    ],
+    "3.6 Escrever testes unitários de sucesso por rota": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568108009
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568239322
+      }
+    ],
+    "3.7 Escrever testes unitários de validação e recurso inexistente": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568109409
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568240548
+      }
+    ],
+    "3.8 Escrever testes unitários de falha de banco e health (com mock)": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568110366
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568241549
+      }
+    ],
+    "5.1 Property test: round-trip criar → buscar preserva dados": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568283623
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568485185
+      }
+    ],
+    "5.2 Property test: `status` ausente assume `pendente`": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568284650
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568486236
+      }
+    ],
+    "5.3 Property test: entrada inválida em criação nunca é persistida": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568286167
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568487490
+      }
+    ],
+    "5.4 Property test: listagem reflete exatamente as inserções": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568287035
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568489829
+      }
+    ],
+    "5. Testes property-based com fast-check (>= 100 iterações)": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568485302
+      }
+    ],
+    "5.8 Property test: busca por `id` inexistente resulta em 404": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568494709
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568659144
+      }
+    ],
+    "5.5 Property test: round-trip de atualização reflete novos dados": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568496163
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568655805
+      }
+    ],
+    "5.7 Property test: remover torna a busca subsequente um 404": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568497195
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568658172
+      }
+    ],
+    "5.6 Property test: atualização inválida nunca altera o estado": [
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568498263
+      },
+      {
+        "executionId": "56470890-a22b-4fc3-b003-10a017f9a122",
+        "chatSessionId": "sess_57449271-78e5-45d2-97d9-6d23a76abeb8",
+        "timestamp": 1790568657106
+      }
+    ]
+  }
+}

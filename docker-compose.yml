@@ -1,0 +1,88 @@
+# =============================================================================
+# Orquestração local da API de Reservas DevOps (Docker Compose)
+# -----------------------------------------------------------------------------
+# Sobe dois serviços em uma rede bridge customizada:
+#   - db : PostgreSQL com volume nomeado `pgdata` e schema aplicado via init.sql
+#   - api: API_Reservas (Node/Express) construída a partir de ./app
+#
+# A `api` só inicia depois que o `db` estiver saudável (healthcheck pg_isready
+# + depends_on: condition: service_healthy).
+#
+# As variáveis sensíveis vêm do arquivo .env (não versionado). Use o
+# .env.example como referência:  cp .env.example .env
+#
+# Requisitos: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Banco de dados PostgreSQL
+  # ---------------------------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: reservas-db
+    restart: unless-stopped
+    environment:
+      # Credenciais/nome do banco reutilizam as variáveis PG* do .env,
+      # mantendo uma única fonte de verdade entre api e db.
+      POSTGRES_USER: ${PGUSER:-reservas}
+      POSTGRES_PASSWORD: ${PGPASSWORD:?defina PGPASSWORD no arquivo .env}
+      POSTGRES_DB: ${PGDATABASE:-reservas}
+    volumes:
+      # Persistência dos dados em volume nomeado (Req 10.3)
+      - pgdata:/var/lib/postgresql/data
+      # Schema aplicado automaticamente na primeira subida do volume (Req 10.6)
+      - ./app/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      # Considera o banco saudável quando aceita conexões (Req 10.4)
+      test:
+        ["CMD-SHELL", "pg_isready -U ${PGUSER:-reservas} -d ${PGDATABASE:-reservas}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - reservas-net
+
+  # ---------------------------------------------------------------------------
+  # API_Reservas (Node/Express)
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: reservas-api
+    restart: unless-stopped
+    depends_on:
+      db:
+        # Só inicia após o db atingir estado saudável (Req 10.5)
+        condition: service_healthy
+    environment:
+      # Connection string apontando para o serviço `db` na rede interna.
+      DATABASE_URL: postgres://${PGUSER:-reservas}:${PGPASSWORD}@db:5432/${PGDATABASE:-reservas}
+      # Variáveis discretas como alternativa (o host é o nome do serviço `db`).
+      PGHOST: db
+      PGPORT: 5432
+      PGUSER: ${PGUSER:-reservas}
+      PGPASSWORD: ${PGPASSWORD}
+      PGDATABASE: ${PGDATABASE:-reservas}
+      PORT: ${PORT:-3000}
+    ports:
+      # Expõe a API no host (Req 10.2)
+      - "${PORT:-3000}:3000"
+    networks:
+      - reservas-net
+
+# =============================================================================
+# Rede bridge customizada (Req 10.1)
+# =============================================================================
+networks:
+  reservas-net:
+    driver: bridge
+
+# =============================================================================
+# Volume nomeado para persistência do PostgreSQL (Req 10.3)
+# =============================================================================
+volumes:
+  pgdata:
+    driver: local
