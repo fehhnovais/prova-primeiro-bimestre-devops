@@ -3,28 +3,28 @@
 **Aluno:** [FERNANDA NOVAIS]  
 **RA:** [4025109]  
 **Data:** [01/10/2026]
-**Ferramenta de IA utilizada:** [Kiro / ChatGPT / Claude / Copilot / outra]
+**Ferramenta de IA utilizada:** [Kiro]
 
 ## Repositório do Projeto
 
-- URL: https://github.com/SEU-USUARIO/prova-primeiro-bimestre-devops
+- URL: https://github.com/fehhnovais/prova-primeiro-bimestre-devops
 
 ## Checklist de Evidências
 
-- [ ] Repositório público com README (nome + RA) e .gitignore
-- [ ] Mínimo de 6 commits com Conventional Commits + feature branch
-- [ ] API com **CRUD completo** de reservas (POST, GET, GET/:id, PUT, DELETE) + /health
-- [ ] Rotas de CRUD gravando no **banco PostgreSQL** (não em memória)
-- [ ] Dockerfile funcional da API de Reservas
-- [ ] docker-compose.yml (API + PostgreSQL) subindo com um comando
-- [ ] Terraform modularizado (vpc, security-group, ec2, rds)
-- [ ] **RDS PostgreSQL provisionado** nas subnets privadas (banco da API na nuvem)
-- [ ] Remote State configurado (S3 + DynamoDB)
-- [ ] Uso de LabRole/LabInstanceProfile (sem criar IAM próprio)
-- [ ] terraform validate e terraform plan sem erros
-- [ ] relatorio.md completo (4 questões)
-- [ ] terraform destroy executado após evidências
+- [x] Repositório público com README (nome + RA) e .gitignore
+- [x] Mínimo de 6 commits com Conventional Commits + feature branch
+- [x] API com **CRUD completo** de reservas (POST, GET, GET/:id, PUT, DELETE) + /health
+- [x] Rotas de CRUD gravando no **banco PostgreSQL** (não em memória)
+- [x] Dockerfile funcional da API de Reservas
+- [x] docker-compose.yml (API + PostgreSQL) subindo com um comando
+- [x] Terraform modularizado (vpc, security-group, ec2, rds)
+- [x] **RDS PostgreSQL provisionado** nas subnets privadas (banco da API na nuvem)
+- [x] Remote State configurado (S3 + DynamoDB)
+- [x] Uso de LabRole/LabInstanceProfile (sem criar IAM próprio)
+- [x] terraform validate e terraform plan sem erros
+- [X] relatorio.md completo (4 questões)
+- [x] terraform destroy executado após evidências
 
 ## Evidências
 
-[Cole aqui os outputs/screenshots: docker compose ps, terraform plan, etc.]
+As evidências (outputs e screenshots: docker compose ps, terraform plan, etc.) estão na pasta [`evidencias/`](./evidencias/), detalhadas em [`evidencias/evidencia.md`](./evidencias/evidencia.md).
