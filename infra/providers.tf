@@ -29,25 +29,20 @@ terraform {
   }
 
   # -----------------------------------------------------------------------------
-  # Backend remoto S3 DESABILITADO no AWS Academy Learner Lab.
+  # Backend remoto S3 + DynamoDB (remote state com locking).
   #
-  # A Service Control Policy (SCP) da organização do Learner Lab nega ações de
-  # gerenciamento de S3 usadas pelo provider (ex.: s3:GetBucketObjectLockConfiguration),
-  # o que impede tanto o bootstrap (infra/backend) quanto o uso do backend "s3".
-  # Por isso, no Learner Lab usamos o backend LOCAL (state em arquivo local).
-  #
-  # O bloco abaixo permanece documentado como evidencia de que o remote state
-  # (S3 versionado + SSE e DynamoDB com LockID) foi implementado (tarefa 9.5).
-  # Em uma conta AWS sem essa SCP, basta reativar este bloco e rodar o bootstrap
-  # em infra/backend antes do `terraform init` aqui.
-  #
-  # backend "s3" {
-  #   bucket         = "api-reservas-devops-tfstate"
-  #   key            = "api-reservas-devops/infra/terraform.tfstate"
-  #   region         = "us-east-1"
-  #   dynamodb_table = "api-reservas-devops-tflock"
-  #   encrypt        = true
-  # }
+  # O bucket S3 (versionado + SSE AES256) e a tabela DynamoDB (chave LockID)
+  # foram provisionados via AWS CLI (ver infra/backend), contornando a Service
+  # Control Policy do Learner Lab que nega a leitura de Object Lock feita pelo
+  # provider ao gerenciar o bucket. Com os recursos ja existentes, o backend
+  # "s3" abaixo funciona normalmente no `terraform init`.
+  backend "s3" {
+    bucket         = "api-reservas-devops-tfstate"
+    key            = "api-reservas-devops/infra/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "api-reservas-devops-tflock"
+    encrypt        = true
+  }
 }
 
 provider "aws" {

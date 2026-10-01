@@ -19,8 +19,12 @@ terraform {
 
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+      source = "hashicorp/aws"
+      # Pinado em 4.x para o bootstrap do remote state: versoes 5.x/6.x do
+      # provider fazem GetObjectLockConfiguration automaticamente ao gerenciar
+      # o bucket, chamada que a SCP do Learner Lab NEGA. A 4.67 nao faz essa
+      # leitura, contornando o AccessDenied.
+      version = "~> 4.67"
     }
   }
 }

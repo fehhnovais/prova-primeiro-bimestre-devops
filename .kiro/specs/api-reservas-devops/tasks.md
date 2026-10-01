@@ -8,7 +8,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
 
 ## Tasks
 
-- [ ] 1. Setup do repositório e app base
+- [x] 1. Setup do repositório e app base
   - [x] 1.1 Criar estrutura de diretórios e `package.json` da API
     - Criar `app/package.json` com dependências `express`, `pg` e devDependencies `jest`, `supertest`, `fast-check`
     - Definir script `test` (jest) e `start` (node src/server.js)
@@ -130,7 +130,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
   - Ensure all tests pass, ask the user if questions arise.
   - _Requirements: 8.5_
 
-- [ ] 7. Containerização com Docker
+- [x] 7. Containerização com Docker
   - [x] 7.1 Criar `Dockerfile` multi-stage com usuário não-root
     - Build multi-stage separando construção e execução; diretiva `USER` não-root; expor porta 3000
     - _Requirements: 9.1, 9.2, 9.3, 9.5, 9.6_
@@ -149,7 +149,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
     - Verificar resposta HTTP em ≤ 30s após início do container; testar container sem conexão ao banco confirmando exit code ≠ 0
     - _Requirements: 9.5, 9.6_
 
-- [ ] 8. Orquestração local com Docker Compose
+- [x] 8. Orquestração local com Docker Compose
   - [x] 8.1 Criar `docker-compose.yml` (api + db)
     - Serviços `api` (API_Reservas) e `db` (postgres); volume nomeado `pgdata`; rede bridge customizada
     - Healthcheck no `db` com `pg_isready`, intervalo ≤ 10s, ≤ 5 retries; `depends_on` da `api` condicionado a `service_healthy`
@@ -171,7 +171,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
     - Confirmar que o `db` atinge `service_healthy` antes da `api` iniciar
     - _Requirements: 10.1, 10.5, 10.6_
 
-- [ ] 9. Módulos Terraform de infraestrutura
+- [x] 9. Módulos Terraform de infraestrutura
   - [x] 9.1 Implementar módulo VPC (`infra/modules/vpc`)
     - Provisionar VPC com 2 subnets públicas e 2 privadas em 2 AZs distintas de `us-east-1`; Internet Gateway e roteamento
     - Expor outputs: id da VPC, lista de subnets públicas, lista de subnets privadas; aplicar tags de nome e ambiente
@@ -202,8 +202,8 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
     - Não declarar `aws_iam_user`, `aws_iam_group` nem `aws_iam_role`; usar `LabRole`/`LabInstanceProfile`
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 16.3, 16.4, 16.5, 17.2, 17.3, 17.4_
 
-- [ ] 10. Execução manual da infraestrutura (Learner Lab)
-  - [ ]* 10.1 [MANUAL] Bootstrap do remote state (S3 + DynamoDB)
+- [x] 10. Execução manual da infraestrutura (Learner Lab)
+  - [x]* 10.1 [MANUAL] Bootstrap do remote state (S3 + DynamoDB)
     - Executar manualmente em `infra/backend` (state local neste passo):
       ```bash
       cd infra/backend
@@ -212,7 +212,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
       ```
     - _Requirements: 16.1, 16.2, 17.4_
 
-  - [ ]* 10.2 [MANUAL] Init do projeto principal com backend S3
+  - [x]* 10.2 [MANUAL] Init do projeto principal com backend S3
     - Executar manualmente em `infra/`:
       ```bash
       cd infra
@@ -220,7 +220,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
       ```
     - _Requirements: 16.3_
 
-  - [ ]* 10.3 [MANUAL] Plan e Apply da infraestrutura
+  - [x]* 10.3 [MANUAL] Plan e Apply da infraestrutura
     - Executar manualmente em `infra/`:
       ```bash
       terraform plan -out=tfplan
@@ -229,7 +229,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
     - Requer Session Token válido do Learner Lab; se `ExpiredToken`, reiniciar o Lab e atualizar credenciais
     - _Requirements: 11.1, 12.1, 12.2, 13.1, 14.1, 14.2, 14.3, 15.1, 15.2, 17.1, 17.4, 17.5_
 
-  - [ ]* 10.4 [MANUAL] Verificar outputs da infraestrutura
+  - [x]* 10.4 [MANUAL] Verificar outputs da infraestrutura
     - Executar manualmente em `infra/`:
       ```bash
       terraform output   # ec2_public_ip, rds_endpoint, api_url
@@ -237,7 +237,7 @@ Este plano converte o design da jornada DevOps completa da **API de Reservas** e
       ```
     - _Requirements: 15.3, 15.4, 15.5_
 
-  - [ ]* 10.5 [MANUAL] Destroy ao final (obrigatório no Learner Lab)
+  - [x]* 10.5 [MANUAL] Destroy ao final (obrigatório no Learner Lab)
     - Executar manualmente para não esgotar créditos:
       ```bash
       cd infra && terraform destroy          # VPC, SG, EC2, RDS

@@ -1,12 +1,12 @@
-<<<<<<< HEAD
-
 # Dependências
 node_modules/
 
-# Variáveis de ambiente
+# Variáveis de ambiente (nunca versionar segredos)
 .env
 .env.local
 .env.*.local
+.env.*
+!.env.example
 
 # Logs
 *.log
@@ -18,15 +18,11 @@ yarn-error.log*
 coverage/
 .nyc_output/
 
-# Sistema operacional
-.DS_Store
-Thumbs.db
-
 # Build
 dist/
 build/
 
-# Terraform (estado e artefatos locais)
+# Terraform (estado, cache e artefatos locais)
 .terraform/
 *.tfstate
 *.tfstate.*
@@ -34,20 +30,18 @@ build/
 tfplan
 crash.log
 crash.*.log
-=======
-node_modules/
-.env
-.env.*
-!.env.example
-
-.terraform/
-*.tfstate
-*.tfstate.*
 *.tfvars
 !*.tfvars.example
 
+# Chaves e certificados
 *.pem
-.vscode/
+
+# Sistema operacional / editor
 .DS_Store
 Thumbs.db
->>>>>>> c1ad96c4a7a43d02526d411d719e398aeb8bb319
+.vscode/
+.idea/
+
+# Arquivos temporarios de teste de API
+body.json
+*.tmp

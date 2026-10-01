@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # API de Reservas — Jornada DevOps
 
 **Aluna:** Fernanda Novais
@@ -91,20 +90,3 @@ prova-primeiro-bimestre-devops/
     ├── modules/
     └── backend/
 ```
-=======
-# Entrega — Prova Devops
-
-**Aluno:** [FERNANDA TAVARES]  
-**RA:** [4025109]  
-**Data:** [01/10/2026]
-
-## Repositório
-
-- URL: https://github.com/fehhnovais/prova-primeiro-bimestre-devops
-
-## Evidências
-
-
-## Evidência de Container Rodando
-
->>>>>>> c1ad96c4a7a43d02526d411d719e398aeb8bb319
