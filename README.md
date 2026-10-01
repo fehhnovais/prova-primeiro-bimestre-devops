@@ -90,3 +90,10 @@ prova-primeiro-bimestre-devops/
     ├── modules/
     └── backend/
 ```
+
+
+## Evidências
+
+As evidências de execução (Docker, Terraform, AWS) estão na pasta
+[`evidencias/`](./evidencias/), com o histórico da interação com a IA em
+[`evidencias/historico_kiro.md`](./evidencias/historico_kiro.md).
